@@ -3,6 +3,8 @@ import {inServerVia, outServerVia} from 'redux-via';
 import {message} from './constants';
 
 /**
+ * Listens to Socket.IO to handle incoming actions at server side.
+ *
  * @param {Object} server The Socket.IO server object.
  * @param {Function} dispatch The dispatch function from store.
  */
@@ -16,6 +18,8 @@ export function inServerViaSocketIO(server, dispatch) {
 }
 
 /**
+ * Builds a middleware that handles outcoming actions at server side.
+ *
  * @param {Object} server The Socket.IO server object.
  * @returns {Function} A Redux middleware
  */
