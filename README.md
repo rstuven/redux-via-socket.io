@@ -54,3 +54,7 @@ const store = finalCreateStore(rootReducer, initialState);
 inServerViaSocketIO(server, store.dispatch);
 
 ```
+
+## Meta options
+
+Action flow is controlled by [options specified in the `meta` property](https://github.com/rstuven/redux-via#meta-options).
