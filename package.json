@@ -1,6 +1,6 @@
 {
   "name": "redux-via-socket.io",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Redux via Socket.IO",
   "main": "lib/index.js",
   "scripts": {
