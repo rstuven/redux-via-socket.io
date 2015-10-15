@@ -55,6 +55,18 @@ inServerViaSocketIO(server, store.dispatch);
 
 ```
 
+You can also tweak the incoming actions before dispatch them
+using socket metadata. For example, if you're using something like
+[passport.socketio](https://github.com/jfromaniello/passport.socketio):
+
+```js
+inServerViaSocketIO(server, (action, socket) => {
+  action.meta.user = socket.request.user;
+  store.dispatch(action);
+});
+```
+
+
 ## Meta options
 
 Action flow is controlled by [options specified in the `meta` property](https://github.com/rstuven/redux-via#meta-options).

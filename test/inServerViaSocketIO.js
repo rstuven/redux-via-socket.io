@@ -22,7 +22,6 @@ describe('inServerViaSocketIO', () => {
     server.emit('connection', socket);
   });
 
-
   it('should throw error', () => {
     const data = `{}`;
     expect(() => {
@@ -57,6 +56,24 @@ describe('inServerViaSocketIO', () => {
     socket.emit(message.action, data);
     const action = {type, meta: {client}};
     expect(dispatch).to.be.calledWith(action);
+  });
+
+  it('should allow to tweak the action with socket metadata before dispatch', () => {
+    const _server = new EventEmitter();
+    const _socket = new EventEmitter();
+    _socket.id = client;
+    _socket.request = {user: {name: 'admin'}}; // using something like passport.socketio
+    const _dispatch = sinon.spy();
+    inServerViaSocketIO(_server, (theAction, theSocket) => {
+      theAction.meta.user = theSocket.request.user;
+      _dispatch(theAction);
+    });
+    _server.emit('connection', _socket);
+    const data = `{"type":"${type}"}`;
+    _socket.emit(message.action, data);
+    const action = {type, meta: {client, user: {name: 'admin'}}};
+    expect(_dispatch).to.be.calledWith(action);
+
   });
 
 });

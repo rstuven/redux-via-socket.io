@@ -12,7 +12,7 @@ export function inServerViaSocketIO(server, dispatch) {
   server.on('connection', socket => {
     socket.on(message.action, data => {
       const action = fsaJSON.parse(data);
-      inServerVia(dispatch, action, socket.id);
+      inServerVia(newAction => dispatch(newAction, socket), action, socket.id);
     });
   });
 }
