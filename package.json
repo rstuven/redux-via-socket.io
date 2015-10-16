@@ -40,6 +40,6 @@
   },
   "dependencies": {
     "flux-standard-action-json": "^1.0.1",
-    "redux-via": "^0.1.0"
+    "redux-via": "^0.1.2"
   }
 }
