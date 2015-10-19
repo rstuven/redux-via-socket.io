@@ -55,7 +55,7 @@ inServerViaSocketIO(server, store.dispatch);
 
 ```
 
-You can also tweak the incoming actions before dispatch them
+You can tweak the incoming actions before dispatch them
 using socket metadata. For example, if you're using something like
 [passport.socketio](https://github.com/jfromaniello/passport.socketio):
 
@@ -66,6 +66,15 @@ inServerViaSocketIO(server, (action, socket) => {
 });
 ```
 
+You can also filter outcoming actions that are broadcasted.
+For example, send actions only to all current user connections, except specified client:
+
+```js
+outServerViaSocketIO(server, (action, socket) =>
+  action.meta.user.email === socket.user.email &&
+  action.meta.client !== socket.id
+)
+```
 
 ## Meta options
 
